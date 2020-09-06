@@ -22,3 +22,15 @@ after_success:
     - docker push dudckd/docker-backend
     - docker push dudckd/docker-nginx
 
+deploy:
+    provider: elasticbeanstalk
+    region: "us-east-2"
+    app: "docker-fullstack"
+    env: "DockerFullstack-env"
+    bucket_name: elasticbeanstalk-us-east-2-840213432037
+    bucket_path: "docker-fullstack"
+    on:
+        branch: master
+
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
